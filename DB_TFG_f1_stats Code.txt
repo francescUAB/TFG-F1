@@ -1,0 +1,186 @@
+Table circuits {
+  circuitId int [pk]
+  circuitRef varchar
+  name varchar
+  location varchar
+  country varchar
+  lat float
+  lng float
+  alt float
+  url varchar
+}
+
+Table drivers {
+  driverId int [pk]
+  driverRef varchar
+  number int
+  code varchar
+  forename varchar
+  surname varchar
+  dob date
+  nationality varchar
+  url varchar
+}
+
+Table constructors {
+  constructorId int [pk]
+  constructorRef varchar
+  name varchar
+  nationality varchar
+  url varchar
+}
+
+Table constructor_results {
+  constructor_resultsId int [pk]
+  raceId int
+  constructorId int
+  points float
+  status varchar
+}
+
+Table constructor_standings {
+  constructorStandingsId int [pk]
+  raceId int
+  constructorId int
+  points float
+  position int
+  positionText varchar
+  wins int
+}
+
+Table laptimes {
+  raceId int
+  driverId int
+  lap int
+  position int
+  time varchar
+  miliseconds int
+}
+
+Table pitstops {
+  raceId int
+  driverId int
+  stop int
+  lap int
+  time varchar
+  duration varchar
+  miliseconds int
+}
+
+Table qualifying {
+  qualifyId int [pk]
+  raceId int
+  driverId int
+  constructorId int
+  number int
+  position int
+  q1 varchar
+  q2 varchar
+  q3 varchar
+}
+
+Table races {
+  raceId int [pk]
+  year int
+  round int
+  circuitId int
+  name varchar
+  date date
+  time varchar
+  url varchar
+  fp1_date date
+  fp1_time varchar
+  fp2_date date
+  fp2_time varchar
+  fp3_date date
+  fp3_time varchar
+  quali_date date
+  quali_time varchar
+  sprint_date date
+  sprint_time varchar
+}
+
+Table results {
+  resultId int [pk]
+  raceId int
+  driverId int
+  constructorId int
+  number int
+  grid int
+  position int
+  positionText varchar
+  positionOrder int
+  points float
+  laps int
+  time varchar
+  miliseconds int
+  fastestLap int
+  rank int
+  fastestLapTime varchar
+  fastestLapSpeed float
+  statusId int
+}
+
+Table seasons {
+  year int [pk]
+  url varchar
+}
+
+Table sprint_results {
+  resultId int [pk]
+  raceId int
+  driverId int
+  constructorId int
+  number int
+  grid int
+  position int
+  positionText varchar
+  positionOrder int
+  points float
+  laps int
+  time varchar
+  miliseconds int
+  fastestLap int
+  rank int
+  fastestLapTime varchar
+  fastestLapSpeed float
+  statusId int
+}
+
+Table status {
+  statusId int [pk]
+  status varchar
+}
+
+Table driver_standings {
+  driverStandingsId int [pk]
+  raceId int
+  driverId int
+  points float
+  position int
+  positionText varchar
+  wins int
+}
+
+
+Ref: races.circuitId > circuits.circuitId
+Ref: constructor_results.constructorId > constructors.constructorId
+Ref: constructor_results.raceId > races.raceId
+Ref: constructor_standings.constructorId > constructors.constructorId
+Ref: constructor_standings.raceId > races.raceId
+Ref: laptimes.driverId > drivers.driverId
+Ref: laptimes.raceId > races.raceId
+Ref: pitstops.driverId > drivers.driverId
+Ref: pitstops.raceId > races.raceId
+Ref: qualifying.driverId > drivers.driverId
+Ref: qualifying.constructorId > constructors.constructorId
+Ref: qualifying.raceId > races.raceId
+Ref: results.driverId > drivers.driverId
+Ref: results.constructorId > constructors.constructorId
+Ref: results.raceId > races.raceId
+Ref: sprint_results.driverId > drivers.driverId
+Ref: sprint_results.constructorId > constructors.constructorId
+Ref: sprint_results.raceId > races.raceId
+Ref: results.statusId > status.statusId
+Ref: driver_standings.driverId > drivers.driverId
+Ref: driver_standings.raceId > races.raceId

@@ -1,0 +1,27 @@
+
+.StartScreen{
+    margin-top: 30%;
+    text-align: center;
+}
+
+.App-logo{
+    width: 70%;
+    height: 70%;
+}
+
+.Button-logo{
+    width: 40%;
+    height: 60%;
+    margin-top: 10%;
+    font-size: 30px;
+    background-color: red;
+    border-radius: 7px;
+    color: white;
+    border-color:red;
+    padding: 3%;
+}
+
+.Button-logo:hover{
+    background-color: white;
+    color: red;
+}
